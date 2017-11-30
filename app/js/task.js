@@ -66,7 +66,7 @@ function saveTask(id) {
             }
         }
         if (valid) {
-            task['id'] = typeof +id === 'number' || localStorage.length;
+            task['id'] = id instanceof MouseEvent ? localStorage.length : id;
             localStorage.setItem(task['id'] + '', JSON.stringify(task));
             updateStorage();
             hiddenWindow();
@@ -110,13 +110,13 @@ function updateStorage() {
     let ul = document.getElementById('list');
 
     if (localStorage.length) {
-
+        let ls = SortLocalStorage();
         while (ul.firstChild) {
             ul.removeChild(ul.firstChild);
         }
 
-        for (let i = 0; i < localStorage.length; i++) {
-            let storeToObject = JSON.parse(localStorage.getItem(localStorage.key(i))),
+        for (let i = 0; i < ls.length; i++) {
+            let storeToObject = ls[i],
                 {id, title, description, complete} = storeToObject,
                 li = document.createElement('li');
 
@@ -133,6 +133,24 @@ function updateStorage() {
         }
     } else {
         ul.innerHTML = '<h2 style="margin: auto; width: 20%">The list is empty</h2>'
+    }
+
+    function SortLocalStorage() {
+        let obj = {}, localStorageArray = [];
+        for (let i = 0; i < localStorage.length; i++) {
+            let parseStore = JSON.parse(localStorage.getItem(localStorage.key(i))),
+                {title} = parseStore;
+
+            obj[title] = parseStore;
+        }
+        Object.keys(obj).sort((a, b) => {
+            if (a.toLowerCase() > b.toLowerCase()) return 1;
+            if (a.toLowerCase() < b.toLowerCase()) return -1;
+            return 0;
+        }).forEach((key, i)=>{
+            localStorageArray[i] = obj[key];
+        });
+        return localStorageArray
     }
 }
 
