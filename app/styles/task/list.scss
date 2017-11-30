@@ -1,0 +1,48 @@
+.form {
+  width: 100%;
+  height: 500px;
+  background: #c5d2c5;
+  position: relative;
+
+  &-list {
+    overflow: auto;
+    height: 430px;
+    margin-left: 0;
+    padding-left: 0;
+    &-task {
+      position: relative;
+      list-style-type: none;
+      margin: 10px;
+      height: 120px;
+      padding: 10px;
+      border: 1px solid yellowgreen;
+      border-radius: 3px;
+      &:hover {
+        background: #accd76;
+      }
+    }
+  }
+  &-button {
+    color: red;
+    &-edit {
+      position: absolute;
+      top: 15px;
+      right: 5px;
+    }
+    &-delete {
+      position: absolute;
+      bottom: 15px;
+      right: 5px;
+    }
+    &-add {
+      position: absolute;
+      bottom: 5px;
+      left: 5px;
+    }
+    &-complete {
+      position: absolute;
+      top: 57px;
+      right: 5px;
+    }
+  }
+}

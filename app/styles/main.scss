@@ -1,0 +1,16 @@
+body {
+  padding-left: 20%;
+  padding-right: 20%;
+}
+
+button {
+  border: 0;
+  border-radius: 3px;
+  cursor: pointer;
+  background: #e9ffc4;
+  width: 120px;
+  height: 25px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5)
+}
+@import "task/editor";
+@import "task/list";
